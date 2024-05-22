@@ -1,113 +1,217 @@
+"use client";
+
+import Card from "@/components/Card";
+import Counter from "@/components/Counter";
+import { useState } from "react";
+import { FaUser } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa6";
+import { FaArrowRight } from "react-icons/fa6";
+
+import Watch from "../../public/img/watch.jpg";
 import Image from "next/image";
+import { FaEye } from "react-icons/fa";
+import { LuCat } from "react-icons/lu";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
 
 export default function Home() {
+  const [modal, setModal] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<{
+    name: string;
+    imgCat: string;
+    harga: string;
+  } | null>(null);
+  let img = "https://cdn2.thecatapi.com/images";
+
+  const handleCardClick = (name: string, imgCat: string, harga: string) => {
+    setSelectedCard({ name, imgCat, harga });
+    setModal(true);
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="mb-96">
+      <header>
+        <nav className="bg-white w-full py-4 pt-4 fixed z-10">
+          <div className="wrapper flex justify-between">
+            <h1 className="font-bold text-3xl text-dark">
+              List <span className="text-third">Data.</span>
+            </h1>
+            <ul className="flex gap-2 items-center">
+              <li className="bg-dark text-white rounded-full font-semibold py-2 px-4">
+                Home
+              </li>
+              <li className="border-2 border-dark text-dark rounded-full font-semibold py-2 px-4">
+                Kucing
+              </li>
+              <li className="border-2 border-dark text-dark rounded-full font-semibold py-2 px-4">
+                Produk Jualan
+              </li>
+              <li className="border-2 border-dark text-dark rounded-full font-semibold py-2 px-4">
+                Character Figure
+              </li>
+              <li className="border-2 border-dark text-dark rounded-full font-semibold py-2 px-4">
+                Others
+              </li>
+            </ul>
+            <div className="flex gap-2 items-center">
+              <div className="text-white bg-dark w-10 h-10 flex justify-center items-center rounded-full">
+                <FaSearch className="text-2xl" />
+              </div>
+              <div className="text-white bg-dark w-10 h-10 flex justify-center items-center rounded-full">
+                <FaUser className="text-2xl" />
+              </div>
+            </div>
+          </div>
+        </nav>
+        <section id="hero" className="pt-28 wrapper">
+          <div className="flex gap-10">
+            <div className="w-2/3 h-80 rounded-2xl bg-primary relative ">
+              <div className="bg-main bg-opacity-15 w-full h-full bg-cover bg-center p-10">
+                <button className="bg-white text-dark text-xl font-bold absolute bottom-0 right-0 rounded-tl-2xl w-fit h-10 px-4">
+                  Go Ahead
+                </button>
+                <div className="flex flex-col text-white font-bold text-4xl gap-2">
+                  <h1>STARTS YOUR</h1>
+                  <h1>Journey</h1>
+                </div>
+                <p className="text-white pt-4">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
+                  quisquam ab quae aliquam unde? Accusantium nesciunt rerum
+                  repudiandae quae laboriosam ipsa optio officiis quod
+                  distinctio nisi nihil illo ipsam ratione reprehenderit, vero,
+                  consequatur laborum earum, voluptate ipsum error. Repellat,
+                  eius.
+                </p>
+              </div>
+            </div>
+            <div className="w-1/3 h-80 rounded-2xl bg-hero bg-cover bg-center relative flex justify-center items-center">
+              <div className="bg-white/20 cursor-pointer backdrop-blur-md w-20 h-20 rounded-full flex justify-center items-center">
+                <FaPlay className="text-white text-4xl" />
+              </div>
+            </div>
+          </div>
+          <div className="flex mt-4 gap-4 items-center">
+            <div className="w-60 h-80 rounded-xl bg-sasuke bg-cover relative bg-center">
+              <div className="text-center font-semibold text-dark pt-2 text-2xl">
+                NEW US
+              </div>
+              <div className="absolute bottom-10 px-4 w-full">
+                <div className="flex w-full">
+                  <div className="w-full bg-white/50 h-10 relative rounded-full flex justify-center items-center">
+                    <div className="w-10 h-10 rounded-full border-2 border-dark bg-white/50 absolute left-0 flex justify-center items-center">
+                      <FaArrowLeft className="text-dark text-xl" />
+                    </div>
+                    <h1 className="text-dark font-bold">View All</h1>
+                    <div className="w-10 h-10 rounded-full border-2 border-dark bg-dark absolute right-0 flex justify-center items-center">
+                      <FaArrowRight className="text-white text-xl" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col gap-4 w-full">
+              <div className="flex gap-4">
+                <div className="w-40 h-[5rem] bg-third rounded-md p-4">
+                  <h1 className="text-white">run by Fabyan Yastika Permana</h1>
+                </div>
+                <div className="bg-slate-200 w-[90%] flex justify-center items-center rounded-xl h-[5rem]">
+                  <h1 className="font-semibold text-xl">
+                    Stay{" "}
+                    <span className="capitalize text-3xl font-bold">
+                      Awesome
+                    </span>
+                  </h1>
+                </div>
+              </div>
+              <h1 className="text-dark text-2xl font-semibold">
+                Choose Your List <span className="text-third">Data. </span>
+              </h1>
+              <div className="flex items-center justify-between gap-10 w-full">
+                <div className="bg-slate-300 rounded-xl shadow-xl relative w-full h-[10.8rem] p-4 flex flex-col gap-2">
+                  <Image
+                    src={Watch}
+                    alt="product"
+                    width={300}
+                    height={20}
+                    className="rounded-2xl object-cover object-center w-full h-28"
+                  />
+                  <h1 className="font-semibold">Apple Watch</h1>
+                  <div className="absolute -bottom-4 rounded-md -right-4 bg-third w-10 h-10 flex justify-center items-center">
+                    <FaEye className="text-white text-xl " />
+                  </div>
+                </div>
+                <div className="bg-slate-300 rounded-xl shadow-xl relative w-full h-[10.8rem] p-4 flex flex-col gap-2">
+                  <Image
+                    src={Watch}
+                    alt="product"
+                    width={300}
+                    height={20}
+                    className="rounded-2xl object-cover object-center w-full h-28"
+                  />
+                  <h1 className="font-semibold">Apple Watch</h1>
+                  <div className="absolute -bottom-4 rounded-md -right-4 bg-third w-10 h-10 flex justify-center items-center">
+                    <FaEye className="text-white text-xl " />
+                  </div>
+                </div>
+                <div className="bg-slate-300 rounded-xl shadow-xl relative w-full h-[10.8rem] p-4 flex flex-col gap-2">
+                  <Image
+                    src={Watch}
+                    alt="product"
+                    width={300}
+                    height={20}
+                    className="rounded-2xl object-cover object-center w-full h-28"
+                  />
+                  <h1 className="font-semibold">Apple Watch</h1>
+                  <div className="absolute -bottom-4 rounded-md -right-4 bg-third w-10 h-10 flex justify-center items-center">
+                    <FaEye className="text-white text-xl " />
+                  </div>
+                </div>
+                <div className="bg-slate-300 rounded-xl shadow-xl relative w-full h-[10.8rem] p-4 flex flex-col gap-2">
+                  <Image
+                    src={Watch}
+                    alt="product"
+                    width={300}
+                    height={20}
+                    className="rounded-2xl object-cover object-center w-full h-28"
+                  />
+                  <h1 className="font-semibold">Apple Watch</h1>
+                  <div className="absolute -bottom-4 rounded-md -right-4 bg-third w-10 h-10 flex justify-center items-center">
+                    <FaEye className="text-white text-xl " />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="list" className="mt-10 wrapper">
+          <div className="flex items-center gap-4 text-dark text-3xl font-semibold">
+            <LuCat />
+            <h1>Kucing</h1>
+          </div>
+          <Swiper
+            spaceBetween={50}
+            slidesPerView={3}
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={(swiper) => console.log(swiper)}
+            freeMode={true}
+            pagination={{
+              dynamicBullets: true,
+            }}
+            modules={[FreeMode, Pagination]}
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+            <SwiperSlide>Slide 1</SwiperSlide>
+            <SwiperSlide>Slide 2</SwiperSlide>
+            <SwiperSlide>Slide 3</SwiperSlide>
+            <SwiperSlide>Slide 4</SwiperSlide>
+          </Swiper>
+        </section>
+      </header>
     </main>
   );
 }

@@ -9,9 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        main: "url('../../public/background/bg.svg')",
+        main2: "url('../../public/background/bg2.svg')",
+        hero: "url('../../public/background/cat.jpg')",
+        sasuke: "url('../../public/background/sasuke.jpg')",
+      },
+      colors: {
+        primary: "#2563eb",
+        secondary: "#a5b4fc",
+        third: "#fb923c",
+        dark: "#172554",
       },
     },
   },
