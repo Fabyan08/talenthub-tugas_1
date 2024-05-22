@@ -13,6 +13,7 @@ const config: Config = {
         main2: "url('../../public/background/bg2.svg')",
         hero: "url('../../public/background/cat.jpg')",
         sasuke: "url('../../public/background/sasuke.jpg')",
+        main3: "url('../../public/background/main.svg')",
       },
       colors: {
         primary: "#2563eb",
