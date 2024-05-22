@@ -197,7 +197,7 @@ export default function Home() {
                     } border-2 border-dark text-dark rounded-full font-semibold py-2 px-4`}
                   >
                     <a href="#produk" onClick={() => handleLinkClick("produk")}>
-                      <h1 className="hidden md:block">Kucing</h1>
+                      <h1 className="hidden md:block">Produk</h1>
                       <div className="md:hidden">
                         <AiOutlineProduct size={20} />
                       </div>{" "}
@@ -376,7 +376,7 @@ export default function Home() {
         <section id="produk" className="mt-10 wrapper ">
           <div className="flex items-center gap-4 text-dark text-3xl font-semibold">
             <AiOutlineProduct />
-            <h1>Produk Jualan</h1>
+            <h1>Produk</h1>
           </div>
           <div className="mt-10">
             <CustomSwiper slides={produk} spaceBetween={50} />
