@@ -9,7 +9,7 @@ import { FaPlay } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
 
-import Watch from "../../public/img/watch.jpg";
+import Watch from "../../public/img/Watch.jpg";
 import Sasuke from "../../public/img/sasuke.jpg";
 import Image from "next/image";
 import { FaEye } from "react-icons/fa";
