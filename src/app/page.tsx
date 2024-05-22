@@ -358,10 +358,6 @@ export default function Home() {
           </section>
         </header>
         <div className="mt-14 flex justify-center gap-4 items-center text-4xl text-dark">
-          <h1 className="text-center font-bold ">
-            List Data Next JS Tugas 1 -{" "}
-            <span className="text-third">Fabyan</span>
-          </h1>
           <FaArrowDown className="animate-bounce" />
         </div>
         <section id="kucing" className="mt-10 wrapper ">
